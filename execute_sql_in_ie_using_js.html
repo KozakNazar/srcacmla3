@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page to execute SQL query</title>
+    </head>	
+    <body>
+        <script type="text/javascript">	
+            try {
+                var objConnection = new ActiveXObject("adodb.connection");
+	            var strConn = "DRIVER={MySQL ODBC 3.51 Driver};SERVER=127.0.0.1;DATABASE=sakila;USER=root;PASSWORD=12345;OPTION=3;"
+	            objConnection.Open(strConn);
+                var rs = new ActiveXObject("ADODB.Recordset");
+	            var strQuery = "SELECT * FROM city";
+                rs.Open(strQuery, objConnection);	
+                rs.MoveFirst();
+                if(!rs.EOF){
+                    document.write("<table style=\"width:100%\">");
+ 	                document.write("<thead>");			
+ 	                document.write("<tr>");
+	                for (index = 0; index < rs.fields.Count; ++index){
+	                    document.write("<td>" + rs.fields(index).Name + "</td>");	
+	                }
+	                document.write("</tr>");
+ 	                document.write("</thead>");			
+ 	                document.write("<tbody>");				
+                    while (!rs.EOF) {	
+	                    document.write("<tr>");
+	                    for (index = 0; index < rs.fields.Count; ++index){
+	                        document.write("<td>" + rs.fields(index) + "</td>");	
+	                    }
+	                    document.write("</tr>");	       
+	                    rs.movenext();
+                    }
+ 	                document.write("</tbody>");							
+                    document.write("</table>");
+	             }
+            }		
+            catch(err) {
+	            document.write(err.message);
+            }
+            </script>	
+   </body>	
+</html>
