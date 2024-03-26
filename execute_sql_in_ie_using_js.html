@@ -23,17 +23,17 @@
 	                document.write("</tr>");
  	                document.write("</thead>");			
  	                document.write("<tbody>");				
-                    while (!rs.EOF) {	
+                        while (!rs.EOF) {	
 	                    document.write("<tr>");
 	                    for (index = 0; index < rs.fields.Count; ++index){
 	                        document.write("<td>" + rs.fields(index) + "</td>");	
 	                    }
 	                    document.write("</tr>");	       
 	                    rs.movenext();
-                    }
- 	                document.write("</tbody>");							
-                    document.write("</table>");
-	             }
+                        }
+                        document.write("</tbody>");							
+                        document.write("</table>");
+	            }
             }		
             catch(err) {
 	            document.write(err.message);
